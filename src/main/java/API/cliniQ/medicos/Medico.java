@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
 
 @Getter
 @NoArgsConstructor
@@ -16,7 +15,7 @@ import java.util.UUID;
 @Table(name = "medicos")
 @Entity(name = "Medico")
 public class Medico {
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
