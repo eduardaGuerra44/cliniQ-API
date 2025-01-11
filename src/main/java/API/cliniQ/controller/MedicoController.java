@@ -1,9 +1,6 @@
 package API.cliniQ.controller;
 
-import API.cliniQ.medicos.DadosCadastroMedico;
-import API.cliniQ.medicos.DadosListagemMedico;
-import API.cliniQ.medicos.Medico;
-import API.cliniQ.medicos.MedicoRepository;
+import API.cliniQ.medicos.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,5 +28,12 @@ public class MedicoController {
     @GetMapping
     public Page<DadosListagemMedico> listarMedico(@PageableDefault(size = 5, sort = {"nome"}) Pageable paginacao){
         return repository.findAll(paginacao).map(DadosListagemMedico::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
     }
 }

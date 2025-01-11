@@ -2,12 +2,9 @@ package API.cliniQ.endereco;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
 public class Endereco {
@@ -28,4 +25,30 @@ public class Endereco {
         this.uf = endereco.uf();
         this.complemento = endereco.complemento();
     }
+
+    public void atualizarInformacoes(DadosEndereco endereco) {
+        if (endereco.logradouro() != null){
+            this.logradouro = endereco.logradouro();
+        }
+        if (endereco.bairro() != null){
+            this.logradouro = endereco.logradouro();
+        }
+        if (endereco.cidade() != null){
+            this.cidade = endereco.cidade();
+        }
+        if (endereco.cep() != null){
+            this.cep = endereco.cep();
+        }
+        if (endereco.numero() != null){
+            this.numero = endereco.numero();
+        }
+        if (endereco.uf() != null){
+            this.uf = endereco.uf();
+        }
+        if (endereco.complemento() != null){
+            this.complemento = endereco.complemento();
+        }
+    }
+
+    public Endereco(){}
 }
