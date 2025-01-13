@@ -5,12 +5,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 
 @Getter
-@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Table(name = "medicos")
 @Entity(name = "Medico")
@@ -21,6 +21,7 @@ public class Medico {
     private String email;
     private String telefone;
     private String crm;
+    private Boolean ativo;
 
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
@@ -32,6 +33,7 @@ public class Medico {
         this.email = dados.email();
         this.telefone = dados.telefone();
         this.crm = dados.crm();
+        this.ativo = true;
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
     }
@@ -49,5 +51,7 @@ public class Medico {
 
     }
 
-    public Medico(){}
+    public void excluir() {
+        this.ativo = false;
+    }
 }
